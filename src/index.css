@@ -9,3 +9,24 @@ body {
     background: #ccc;
     border-radius: 3px;
 }
+
+.card {
+    height: 60px;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.card.hidden::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: #aaa;
+}

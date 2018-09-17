@@ -1,5 +1,6 @@
 import React from 'react';
 import { types } from "./types";
+import Game from "./components/Game";
 import './App.css';
 
 const initCards = len => {
@@ -11,13 +12,15 @@ const initCards = len => {
     return cards;
 }
 
+const Mode = () => {};
+
 export default class App extends React.Component {
     constructor() {
         super();
         this.state = {
             round: 1,
             mode: types.SINGLE_PLAYER,
-            config: 36,
+            row: 6,
             cards: initCards(36)
         };
     }
@@ -30,10 +33,14 @@ export default class App extends React.Component {
         return (
             <div className="App">
                 {
-                    mode == types.MODE_SELECTION ? <Mode /> : <Game
-                        state={state}
-                        nextMode={this.nextMode}
-                    />
+                    mode == types.MODE_SELECTION ? (
+                        <Mode />
+                    ) : (
+                        <Game
+                            state={this.state}
+                            nextMode={this.nextMode}
+                        />
+                    )
                 }
             </div>
         );
