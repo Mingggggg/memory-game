@@ -16,7 +16,7 @@ export default class App extends React.Component {
         super();
         this.state = {
             round: 1,
-            mode: types.MODE_SELECTION,
+            mode: types.SINGLE_PLAYER,
             config: 36,
             cards: initCards(36)
         };
@@ -26,12 +26,15 @@ export default class App extends React.Component {
     // nextConfig = 
     nextRound = () => this.nextState({ round: this.state.round+1 })
     render() {
+        const { mode } = this.state;
         return (
             <div className="App">
-                <Game
-                    state={state}
-                    nextMode={this.nextMode}
-                />
+                {
+                    mode == types.MODE_SELECTION ? <Mode /> : <Game
+                        state={state}
+                        nextMode={this.nextMode}
+                    />
+                }
             </div>
         );
     }
