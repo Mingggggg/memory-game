@@ -1,37 +1,43 @@
 import React from 'react';
-import { types } from "./types";
 import Game from "./components/Game";
 import './App.css';
 
-
-const Mode = () => {};
-
 export default class App extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            round: 1,
-            mode: types.SINGLE_PLAYER,
-            row: 6,
+    static init = () => {
+        let player = 0;
+        while (player == NaN || player < 1 || typeof player != 'number') {
+            player = parseInt(prompt("Enter number of player"));
+        }
+        const levels = {
+            'easy': 4, 
+            'medium': 6,
+            'hard': 8,
         };
+        let level = 'insane';
+        while (!(level in levels)) {
+            level = prompt("Enter the level of difficulty you'd like (easy, medium or hard)").toLowerCase();
+        }
+        return {
+            row: levels[level],
+            player,
+            round: 0,
+        }
     }
-    nextStates = s => this.setState({ ...this.state, ...s });
-    nextMode = mode => this.nextState({ mode })
-    nextRound = () => this.nextState({ round: this.state.round+1 })
+    constructor(props) {
+        super(props);
+        this.state = App.init();
+    }
+    restart = () => {
+        const round = this.state.round+1;
+        this.setState({ ...App.init(), round });
+    }
     render() {
-        const { mode } = this.state;
         return (
             <div className="App">
-                {
-                    mode == types.MODE_SELECTION ? (
-                        <Mode />
-                    ) : (
-                        <Game
-                            state={this.state}
-                            nextMode={this.nextMode}
-                        />
-                    )
-                }
+                <Game
+                    state={this.state}
+                    restart={this.restart}
+                />
             </div>
         );
     }

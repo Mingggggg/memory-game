@@ -1,7 +1,0 @@
-export const types = {
-    HIDDEN: "HIDDEN",
-    REVEALED: "REVEALED",
-    MATCHED: "MATCHED",
-    MODE_SELECTION: "MODE_SELECTION",
-    SINGLE_PLAYER: "SINGLE_PLAYER"
-};
