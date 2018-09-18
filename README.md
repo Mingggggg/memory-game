@@ -14,6 +14,8 @@ Run `yarn install && yarn start`
 
 - Randomized card layout
 
+- Announce ties if more than one player wins
+
 - In-game reset
 
 - Adjustable number of cards in the game (difficulty levels)
