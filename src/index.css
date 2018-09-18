@@ -41,3 +41,10 @@ body {
     bottom: 0;
     background: #4975f9;
 }
+
+.columns {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}

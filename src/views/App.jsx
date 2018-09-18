@@ -5,17 +5,20 @@ import './App.css';
 export default class App extends React.Component {
     static init = () => {
         let player = 0;
-        while (player == NaN || player < 1 || typeof player != 'number') {
-            player = parseInt(prompt("Enter number of player"));
+        while (player < 1) {
+            let cin = prompt("Enter number of player", "1")
+            if (cin == null) continue;
+            player = parseInt(cin);
         }
         const levels = {
-            'easy': 4, 
+            'easy': 2, 
             'medium': 6,
             'hard': 8,
         };
         let level = 'insane';
         while (!(level in levels)) {
-            level = prompt("Enter the level of difficulty you'd like (easy, medium or hard)").toLowerCase();
+            level = prompt("Enter the level of difficulty you'd like (Easy, Medium or Hard)", "Easy")
+                .toLowerCase();
         }
         return {
             row: levels[level],
